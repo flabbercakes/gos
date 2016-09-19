@@ -436,4 +436,5 @@ OnTick(function (myHero)
 
 end)	
 
-print("Thanks Testing out my Script" ..myHero.name.. " :)")	
+print('<font color = "#00FFFF"><b>Thanks for using Sinister Garen</b> <font color = "#FFFFFF">by <font color = "#FF69b4"><b>Sibyl</b> <font color = "#FFFFFF">Loaded!')
+print('<font color = "#FFFFFF">->Please select <font color = "#FF0000"><b>IOW</b><font color = "#FFFFFF"> Orbwalker!')
