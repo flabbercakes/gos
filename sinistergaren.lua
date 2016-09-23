@@ -40,14 +40,14 @@ GarenMenu.Drawings:Boolean('CT', 'Draw circle on curent target', true)
 	function ComboQ()
 		if GarenMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target, QRange) then
 			if QPredTarget.HitChance == 1 then
-				CastSpell
+				CastSpell(_Q) 
 			end
 		end
 	end
 
 	function ComboE()
 		if GarenMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target, ERange) then
-			CastSpell
+			CastSpell(_E)
 		end
 	end
 
@@ -59,7 +59,7 @@ GarenMenu.Drawings:Boolean('CT', 'Draw circle on curent target', true)
 
 OnTick(function (myHero)
 
-	--VARIABLES
+	
 	target = GetCurrentTarget()
 	MaxMana = GetMaxMana(myHero)
 	MaxHP = GetMaxHP(myHero)
@@ -80,10 +80,10 @@ OnTick(function (myHero)
 	SuperMinionBlue = 'SRU_OrderMinionSuper'
 	SuperMinionRed = 'SRU_ChaosMinionSuper'
 
---COMBO
+
 	if IOW:Mode() == 'Combo' then
 
-		--EWQR
+		
 		if GarenMenu.Combo.ComboMode:Value() == 1 then
 			ComboE()
 			ComboW()
@@ -91,7 +91,7 @@ OnTick(function (myHero)
 			ComboR()
 		end
 
-		--QWER
+	
 		if GarenMenu.Combo.ComboMode:Value() == 2 then
 			ComboQ()
 			ComboW()
@@ -99,7 +99,7 @@ OnTick(function (myHero)
 			ComboR()
 		end
 		
-		--RQWE
+		
 		if GarenMenu.Combo.ComboMode:Value() == 2 then
 			ComboR()
 			ComboQ()
@@ -109,7 +109,7 @@ OnTick(function (myHero)
 
 	else
 	
-			--LAST HIT BIG MINIONS Q
+			
 		if GarenMenu.Farm.LHBQ:Value() then
 				if not UnderTurret(GetOrigin(myHero), enemyTurret) then
 					if IsObjectAlive(myHero) then
@@ -155,7 +155,7 @@ OnTick(function (myHero)
 			end
 		end
 		
-			--LAST HIT BIG MINIONS E
+		
 		if GarenMenu.Farm.LHBE:Value() then
 				if not UnderTurret(GetOrigin(myHero), enemyTurret) then
 					if IsObjectAlive(myHero) then
@@ -203,7 +203,7 @@ OnTick(function (myHero)
 			end
 		end
 		
-				--LAST HIT SMALL MINIONS Q
+				
 		if GarenMenu.Farm.LHQ:Value() then
 				if not UnderTurret(GetOrigin(myHero), enemyTurret) then
 					if IsObjectAlive(myHero) then
@@ -221,7 +221,7 @@ OnTick(function (myHero)
 			end
 		end
 		
-				--LAST HIT MINIONS AA
+				-
 		if not UnderTurret(GetOrigin(myHero), enemyTurret) then
 			if GarenMenu.Farm.LH:Value() then
 				for _, minion in pairs(minionManager.objects) do
@@ -234,7 +234,7 @@ OnTick(function (myHero)
 
 	end
 	
-		--LANE CLEAR / JUNGLE CLEAR
+		
 	x = 0
 	closestJungle = ClosestMinion(myHero, 300)
 	closestMinion = ClosestMinion(myHero, 300 - GetTeam(myHero))
@@ -265,7 +265,7 @@ OnTick(function (myHero)
 		end
 	end
 	
-		--KILLSTEAL
+		
 	for _, enemy in pairs(GetEnemyHeroes()) do
 
 		 QPredEnemy = GetPredictionForPlayer(myHeroPos(), enemy, GetMoveSpeed(enemy), 1700, 250, 900, 50, true, true)
@@ -286,7 +286,7 @@ OnTick(function (myHero)
 
 	end
 
-	--AUTO IGNITE
+
 	for _, enemy in pairs(GetEnemyHeroes()) do
 		
 		if GetCastName(myHero, SUMMONER_1) == 'SummonerDot' then
@@ -308,27 +308,27 @@ OnTick(function (myHero)
 
 	end
 	
-	--AUTO LEVEL
-	if SionMenu.Misc.Level:Value() then
+
+	if GarenMenu.Misc.Level:Value() then
 		spellorder = {_Q, _E, _W, _E, _E, _R, _E, _Q, _E, _Q, _R, _Q, _Q, _W, _W, _R, _W, _W}
 		if GetLevelPoints(myHero) > 0 then
 			LevelSpell(spellorder[GetLevel(myHero) + 1 - GetLevelPoints(myHero)])
 		end
 	end
 	
-		--CURRENT TARGET CIRCLE
+	
 	if GarenMenu.Drawings.CT:Value() then
 		if IsObjectAlive(myHero) then
 			DrawCircle(GetOrigin(target), 100, 5, 8, ARGB(100, 255, 0, 255))
 		end
 	end
 	
-	--DRAW ON ENEMY
+
 	for _, enemy in pairs(GetEnemyHeroes()) do
 
 		if ValidTarget(enemy) then
 
-			--DRAW IF KILLABLE
+		
 			 enemyPos = GetOrigin(enemy)
 			 drawpos = WorldToScreen(1,enemyPos.x, enemyPos.y, enemyPos.z)
 
@@ -362,7 +362,7 @@ OnTick(function (myHero)
 
 			end
 
---DRAW DMG ON HP BAR
+
 			if GarenMenu.Drawings.DDMG:Value() then
 				if Ready(_Q) and Ready(_W) and Ready(_E) then
 
@@ -395,7 +395,6 @@ OnTick(function (myHero)
 				end
 			end
 			
-		--DRAW IF FASTER OR SLOWER
 			if GarenMenu.Drawings.SF:Value() then
 				if IsObjectAlive(myHero) then
 					if GetMoveSpeed(myHero) < GetMoveSpeed(enemy) then
@@ -410,7 +409,7 @@ OnTick(function (myHero)
 
 	end		
 
---DRAW CIRCLE ON MINIONS
+
 	if GarenMenu.Drawings.DCM:Value() then
 		if IsObjectAlive(myHero) then
 			for _, minion in pairs(minionManager.objects) do
