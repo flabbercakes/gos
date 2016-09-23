@@ -1,7 +1,7 @@
 if GetObjectName(GetMyHero()) ~= "Garen" then return end
 
+require("OpenPredict")
 
---MENU
  GarenMenu = Menu('Garen', 'Sinister Garen')
 
 GarenMenu:SubMenu('Combo', 'Combo')
