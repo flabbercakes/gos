@@ -37,29 +37,26 @@ GarenMenu.Drawings:Boolean('DCM', 'Draw circle on minions', true)
 GarenMenu.Drawings:Boolean('SF', 'Draw if slower or faster', true)
 GarenMenu.Drawings:Boolean('CT', 'Draw circle on curent target', true)
 
---COMBO FUNCTIONS
-
-	--SPELL FUNCTIONS
 	function ComboQ()
 		if GarenMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target, QRange) then
 			if QPredTarget.HitChance == 1 then
-				CastActiveSpell(_Q, QPredTarget.PredPos)
+				CastSpell
 			end
 		end
 	end
 
 	function ComboE()
 		if GarenMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target, ERange) then
-			CastActiveSpell(target, _E)
+			CastSpell
 		end
 	end
-	
+
 	function ComboR()
 		if GarenMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target, RRange) then
 			CastTargetSpell(target, _R)
 		end
 	end
-	
+
 OnTick(function (myHero)
 
 	--VARIABLES
