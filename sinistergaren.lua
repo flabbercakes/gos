@@ -57,30 +57,6 @@ GarenMenu.Drawings:Boolean('CT', 'Draw circle on curent target', true)
 		end
 	end
 
-OnTick(function (myHero)
-
-	
-	target = GetCurrentTarget()
-	MaxMana = GetMaxMana(myHero)
-	MaxHP = GetMaxHP(myHero)
-	CurrentHP = GetCurrentHP(myHero)
-	BaseAD = GetBaseDamage(myHero)
-	BonusAD = GetBonusDmg(myHero)
-	BonusAP = GetBonusAP(myHero)
-	MeleeRange = 175	
-	QRange = 300
-	WRange = 20
-	ERange = 325
-	QDmg = 35 + 25 * GetCastLevel(myHero, _Q) + BonusAD * 1.40
-	EDmg = 25 + 25 * GetCastLevel(myHero, _E) + BonusAD * 0.3 
-	RDmg = 25 + 25 * GetCastLevel(myHero, _R)
-	QPredTarget = GetPredictionForPlayer(myHeroPos(), target, GetMoveSpeed(target), 1700, 250, 900, 50, false, true)
-	BigMinionBlue = 'SRU_OrderMinionSiege'
-	BigMinionRed = 'SRU_ChaosMinionSiege'
-	SuperMinionBlue = 'SRU_OrderMinionSuper'
-	SuperMinionRed = 'SRU_ChaosMinionSuper'
-
-
 	if IOW:Mode() == 'Combo' then
 
 		
