@@ -48,19 +48,13 @@ GarenMenu.Drawings:Boolean('CT', 'Draw circle on curent target', true)
 		end
 	end
 
-	function ComboW()
-		if GarenMenu.Combo.W:Value() and Ready(_W) and ValidTarget(target, WRange) then
-			CastActiveSpell(target, _W)
-		end
-	end
-
 	function ComboE()
 		if GarenMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target, ERange) then
 			CastActiveSpell(target, _E)
 		end
 	end
 	
-		function ComboR()
+	function ComboR()
 		if GarenMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target, RRange) then
 			CastTargetSpell(target, _R)
 		end
