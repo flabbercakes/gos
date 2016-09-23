@@ -1,4 +1,4 @@
-if GetObjectName(GetMyHero()) ~= "Garen" then return end
+if myHero.charName ~= "Khazix" then return end
 
 require("OpenPredict")
 
