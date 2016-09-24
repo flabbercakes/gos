@@ -26,6 +26,20 @@ AmumuMenu.d:Boolean("dW","Draw W", true)
 AmumuMenu.d:Boolean("dE","Draw E", true)
 AmumuMenu.d:Boolean("dR","Draw R", true)
 
+function Mode()
+    if _G.IOW_Loaded and IOW:Mode() then
+        return IOW:Mode()
+        elseif _G.PW_Loaded and PW:Mode() then
+        return PW:Mode()
+        elseif _G.DAC_Loaded and DAC:Mode() then
+        return DAC:Mode()
+        elseif _G.AutoCarry_Loaded and DACR:Mode() then
+        return DACR:Mode()
+        elseif _G.SLW_Loaded and SLW:Mode() then
+        return SLW:Mode()
+    end
+
+
 OnTick(function()									--The code inside the Function runs every tick
 	
 	local target = GetCurrentTarget()					--Saves the "best" enemy champ to the target variable
